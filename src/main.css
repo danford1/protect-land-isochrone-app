@@ -1,0 +1,321 @@
+/* FONTS */
+@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,700,900);
+
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    height: 100%;
+    padding: 0;
+    overflow: hidden;
+    font-family: "Roboto";
+    color: #444;
+}
+
+.background-image {
+    background: url(../images/fern.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+/*Text*/
+h1 {
+    font-size: 2.0rem;
+    font-weight: normal;
+    color: #444;
+}
+
+h2 {
+    font-size: 1.6rem;
+    font-weight: normal;
+    color: #444;
+}
+
+h3 {
+    font-size: 1.4rem;
+    font-weight: normal;
+    color: #444;
+}
+
+h4 {
+    font-size: 1.2rem;
+    font-weight: normal;
+    color: #444;
+}
+
+.title h1 {
+    align-self: center;
+    text-align: center;
+    font-size: 2.0rem;
+    font-weight: normal;
+    color: #444;
+}
+
+p {
+    margin: 0;
+    font-size: 1.0rem;
+    font-weight: 400;
+    line-height: 150%;
+    color: #444;
+}
+
+ul {
+    margin: 0;
+    padding-left: 20px;
+    font-size: 1.0rem;
+    font-weight: 400;
+    line-height: 125%;
+    color: #444;
+}
+/*Text*/
+
+/* Links */
+a {
+    color: #5285c0;
+    word-wrap: break-word;
+    text-decoration: none;
+}
+
+a:hover, a:focus {
+    color: #5285c0;
+    text-decoration: underline;
+    outline: 0;
+}
+
+.footer a img {
+    height: 35px;
+    padding: 20px;
+}
+
+/*Links*/
+
+/* Grid Elements*/
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 2fr 2fr 3fr;
+    grid-template-areas:
+        "title"
+        "geocoder"
+        "footer";
+    height: 100vh;
+    background-color: #fff;
+    color: #444;
+}
+
+.title {
+    grid-area: title;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    background-color: #fff;
+    padding: 20px;
+}
+
+.footer {
+    grid-area: footer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+/*Grid Elements */
+
+
+/*Buttons*/
+.btn {
+    font-family: "Roboto", Arial, Helvetica, sans-serif;
+    font-size: 0.9rem;
+    font-weight: 400;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    margin: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn:hover .btn:hover {
+    text-decoration: none;
+}
+
+.btn-green {
+    background-color: #20a999;
+    border: 1px solid #20a999;
+    color: #fff;
+    box-shadow: 2px 3px 3px #C3CBD3;
+}
+
+.btn-green:hover, .btn-green:focus {
+    background-color: #0e9081;
+    border: 1px solid #0e9081;
+    color: #fff;
+    text-decoration: none;
+    box-shadow: 2px 3px 3px #C3CBD3;
+}
+
+.btn-ghost {
+    border: 1px solid #757575;
+    color: #757575;
+}
+
+.btn-ghost:hover, .btn-ghost:focus {
+    border: 1px solid #444;
+    color: #444;
+    text-decoration: none;
+}
+/*Buttons*/
+
+/* Geocoder */
+
+@media only screen and (min-width: 1028px)  {
+    .geocoder-container > .mapboxgl-ctrl-geocoder {
+        font: 15px/25px 'Roboto', Arial, sans-serif;
+        position: relative;
+        background-color: white;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+        width: 40vw;
+        min-width: 400px;
+        max-width: 500px;
+        margin-left: 0;
+    }
+}
+
+.geocoder {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* align-items: center; */
+}
+
+.geocoder-container > .mapboxgl-ctrl-geocoder {
+    font: 15px/25px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    position: relative;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    width: 80vw;
+    min-width: 250px;
+    max-width: 380px;
+    margin-left: 0;
+}
+
+.geocoder-container > .mapboxgl-ctrl-geocoder ul {
+    background-color: #fff;
+    border-radius: 0 0 5px 5px;
+    border: 1px solid #999;
+    box-shadow: none;
+    left: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    width: 100%;
+    top: 100%;
+    overflow: hidden;
+    font-size: 12px;
+    text-align: left;
+}
+
+.geocoder-container > .mapboxgl-ctrl-geocoder, .mapboxgl-ctrl-geocoder ul {
+    box-shadow: none;
+    border: 1px solid #999;
+}
+
+.geocoder-container > .mapboxgl-ctrl-geocoder input[type='text'] {
+    font-size: 14px;
+    width: 100%;
+    border: 0;
+    background-color: transparent;
+    height: 40px;
+    margin: 0 30px;
+    color: rgba(0,0,0,.5);
+    padding: 10px 40px 10px 10px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+
+
+/* Geocoder */
+
+
+/* Map */
+#map {
+    height: 57vh;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+}
+/*Map*/
+
+
+.map-footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding-bottom: 20px;
+}
+
+.result-block {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 30px;
+}
+
+.result {
+    text-align: center;
+    background-color: #20a999;
+    border-radius: 50%;
+    min-width: 60px;
+    min-height: 60px;
+    border: 6px solid #fff;
+    border-radius: 100%;
+    box-shadow: 0 1px 4px rgba(0,0,0,.3);
+}
+
+.result h1 {
+    line-height: 0.5;
+    color: #fff;
+}
+
+.result-text {
+    padding-left: 10px;
+    max-width: 200px;
+}
+
+.donate-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.message {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 30px 10px 30px;
+}
+
+.message p {
+    margin: 0;
+    font-size: 0.9rem;
+    font-weight: 400;
+    line-height: 125%;
+    color: #757575;
+}

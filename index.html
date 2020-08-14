@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+
+    <!-- Site info -->
+    <title>Protect Land</title>
+    <meta name="description" content="How much protected land is near you?">
+    <meta name="author" content="Heritage Conservancy">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="images/favicon.png">
+
+    <!-- Metatags -->
+    <meta property="og:title" content="Protect Land" />
+    <meta property="og:url" content="protectland.heritageconservancy.org" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="How much protected land is near you?" />
+    <meta property="og:image" content="images/link-card-img.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Protect Land" />
+    <meta name="tiwtter:creator" content="@danjford" />
+    <meta name="twitter:description" content="How much protected land is near you?" />
+    <meta name="twitter:url" content="protectland.heritageconservancy.org" />
+    <meta property="og:image" content="images/link-card-img.png" />
+
+    <!-- Main stylesheet -->
+    <link rel="stylesheet" href="src/main.css" />
+
+    <!-- Mapbox GL JS  -->
+    <script src="https://api.mapbox.com/mapbox-gl-js/v1.9.0/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v1.9.0/mapbox-gl.css" rel="stylesheet" />
+
+    <!-- Mapbox GL Geocoder -->
+    <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.min.js'></script>
+    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.css' type='text/css' />
+
+    <!-- Promise polyfill script required to use Mapbox GL Geocoder in IE 11 -->
+    <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
+
+    <!-- Turf.js -->
+    <script src='https://api.tiles.mapbox.com/mapbox.js/plugins/turf/v3.0.11/turf.min.js'></script>
+
+    <!-- Mapbox Directions -->
+    <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v3.1.1/mapbox-gl-directions.js'></script>
+    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v3.1.1/mapbox-gl-directions.css' type='text/css' />
+
+    <!-- Import jQuery -->
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+
+</head>
+<body>
+    <div class="grid container" id="container">
+        <!-- Title -->
+        <div id="title" class="title">
+            <h1>How much protected land is within a 10 minute drive?</h1>
+        </div>
+        <!-- Title -->
+        <!-- Geocoder -->
+        <div id="geocoder-div" class="geocoder">
+            <div id="geocoder-container" class="geocoder-container"></div>
+        </div>
+        <!-- Geocoder -->
+        <!-- Map -->
+        <div id="map"></div>
+        <!-- Map -->
+        <!-- Footer -->
+        <div id="footer" class="footer">
+            <span>Built by</span>
+            <a href="./"><img src="images/logo.svg"></a>
+        </div>
+        <!-- Footer -->
+    </div>
+
+    <script src="src/app.js"></script>
+</body>
+</html>
