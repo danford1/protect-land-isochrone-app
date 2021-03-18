@@ -1,3 +1,7 @@
+// Weird errors when querying: 124 East Street, Doylestown, Pennsylvania 18901, United States
+// sn {pt: f, message: "side location conflict [ (-75.02083181232753, 40.38035339790635, undefined) ]"}
+// Ok Queries: 424 North Street
+
 $(window).on('load', function(){
     renderSearchPrompt();
 });
@@ -99,16 +103,13 @@ MAP.on("load", function () {
             "features": []
         }
     });
-
     MAP.addLayer({
-        'id': 'intersection',
-        'type': 'line',
+        'id': 'intersection-line',
+        'type': 'line', // the line type requires polyline features, we are passing in polygons here so nothing shows https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/#line
         'source': 'intersection',
-        'layout': {},
         'paint': {
-            'line-color': '#fff',
-            'line-opacity': 0.8,
-            'line-width': 4
+            'line-width': 4,
+            'line-color': 'rgba(100,100,100, 0.8)'
         }
     }, 'preserved-land');
 });
@@ -208,7 +209,8 @@ function getIso() {
 
 function getIntersection() {
 
-    let land = MAP.queryRenderedFeatures({layers: ['preserved-land']});
+    // This could also be done with the TileQuery API
+    let land = MAP.queryRenderedFeatures({layers: ['preserved-land']}); // Returns an array
     console.log("land: ", land);
 
     console.log(APP.isoFeature);
@@ -221,16 +223,21 @@ function getIntersection() {
     // ========================================
     // NEED TO FIGURE OUT HOW TO COUNT LAND FEATURES THAT INTERSECT ISOCHRONE
     // ========================================
-
-    //
-    // let intersection = turf.intersect(land, isoResult);
+    // let intersection = turf.intersect(land, isoResult); // This didn't work  because turf.intersect only works on features, not arrays of features, needs a loop
     // console.log(intersection);
-    //
-    //
+
+    let intersection = land.reduce((collect, feature, i)=>{
+        if (turf.intersect(feature, isoResult)){
+            collect.push(feature)
+        }
+        return collect;
+    }, []);
+    console.log("intersected features", intersection);
+    
     // // Populate the intersection map layer
-    // if (intersection) {
-    //   MAP.getSource("intersection").setData(intersection);
-    //   console.log("intersection source defined");
+    // This should be ok with an empty array also from above, if you want to skip the conditional
+    MAP.getSource("intersection").setData(turf.featureCollection(intersection););
+    // console.log("intersection source defined");
     // } else {
     //   MAP.getSource("intersection").setData({
     //     type: "FeatureCollection",
@@ -239,16 +246,16 @@ function getIntersection() {
     //   console.log("intersection empty");
     // }
 
-    renderResult();
+    renderResult(intersection.length);
 };
 
-function renderResult() {
+function renderResult(count) {
 
     const footerResult =
-    '<div id="map-footer" class="map-footer"> \
+    `<div id="map-footer" class="map-footer"> \
         <div class="result-block"> \
             <div class="result"> \
-                <h1>8</h1> \
+                <h1>${count ?? 0}</h1> \
             </div> \
             <div class="result-text"> \
                 <p>protected properties are within a 10 minute drive</p> \
@@ -261,7 +268,7 @@ function renderResult() {
             <a href="./" class="btn btn-ghost">New address</a> \
             <a href="./" class="btn btn-green">Support conservation now</a> \
         </div> \
-    </div>';
+    </div>`;
 
     // Replace HTML with footer
     $(".footer").replaceWith($(footerResult));
