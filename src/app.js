@@ -1,7 +1,7 @@
 // Weird errors when querying: 124 East Street, Doylestown, Pennsylvania 18901, United States
 // sn {pt: f, message: "side location conflict [ (-75.02083181232753, 40.38035339790635, undefined) ]"}
 // Ok Queries: 424 North Street
- 
+
 $(window).on('load', function(){
     renderSearchPrompt();
 });
@@ -223,9 +223,7 @@ function getIntersection() {
     // ========================================
     // NEED TO FIGURE OUT HOW TO COUNT LAND FEATURES THAT INTERSECT ISOCHRONE
     // ========================================
-
-    
-    // let intersection = turf.intersect(land, isoResult); // errors because turf.intersect only works on features, not arrays of features, needs a loop
+    // let intersection = turf.intersect(land, isoResult); // This didn't work  because turf.intersect only works on features, not arrays of features, needs a loop
     // console.log(intersection);
 
     let intersection = land.reduce((collect, feature, i)=>{
@@ -235,13 +233,11 @@ function getIntersection() {
         return collect;
     }, []);
     console.log("intersected features", intersection);
-    //
-    //
+    
     // // Populate the intersection map layer
     // This should be ok with an empty array also from above, if you want to skip the conditional
-    let fc = turf.featureCollection(intersection);
-    MAP.getSource("intersection").setData(fc);
-    console.log("intersection source defined");
+    MAP.getSource("intersection").setData(turf.featureCollection(intersection););
+    // console.log("intersection source defined");
     // } else {
     //   MAP.getSource("intersection").setData({
     //     type: "FeatureCollection",
