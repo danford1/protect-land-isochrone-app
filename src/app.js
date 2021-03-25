@@ -124,6 +124,7 @@ function getIsochroneURL(modality, time, long, lat) {
         "?contours_minutes=" +
         time +
         "&polygons=true" +
+        "&generalize=5" +
         "&access_token=" +
         mapboxgl.accessToken;
 
@@ -227,7 +228,7 @@ function getIntersection() {
     // console.log(intersection);
 
     let intersection = land.reduce((collect, feature, i)=>{
-        if (turf.intersect(feature, isoResult)){
+        if (turf.booleanIntersects(feature, isoResult)){
             collect.push(feature)
         }
         return collect;
@@ -236,7 +237,7 @@ function getIntersection() {
     
     // // Populate the intersection map layer
     // This should be ok with an empty array also from above, if you want to skip the conditional
-    MAP.getSource("intersection").setData(turf.featureCollection(intersection););
+    MAP.getSource("intersection").setData(turf.featureCollection(intersection));
     // console.log("intersection source defined");
     // } else {
     //   MAP.getSource("intersection").setData({
